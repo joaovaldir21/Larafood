@@ -27,6 +27,9 @@
         </div>
         <div class="card-body">
 
+          <!-- Inclusão de Alerta de sucesso -->
+          @include('admin.includes.alerts')
+
             <table class="table table-condensed">
                 <thead>
                     <tr>

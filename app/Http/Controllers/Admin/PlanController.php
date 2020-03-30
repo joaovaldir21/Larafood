@@ -39,7 +39,8 @@ class PlanController extends Controller
     {
         $this->repository->create($request->all());
 
-        return redirect()->route('plans.index');
+        return redirect()->route('plans.index')
+                         ->with('message', 'Registro cadastrado com sucesso!');
     }
 
     // Função para mostrar as informações de um certo plano pela URL
@@ -52,7 +53,7 @@ class PlanController extends Controller
             return redirect()->back();
         } else {
             return view('admin.pages.plans.show', [
-                'plan' => $plan
+                'plan' => $plan,
             ]);
         }
 
@@ -61,15 +62,25 @@ class PlanController extends Controller
     // Função para deletar um plano do banco de dados pela URL
     public function destroy($url)
     {
-        $plan = $this->repository->where('url', $url)->first();
+        $plan = $this->repository
+                     ->with('details')
+                     ->where('url', $url)
+                     ->first();
 
         if (!$plan)
         {
             return redirect()->back();
         } else {
+
+          if ($plan->details->count() > 0){
+            return redirect()
+                     ->back()
+                     ->with('error', 'Existem detalhes vinculados a este plano, portanto não pode ser deletado.');
+          }
             $plan->delete();
 
-            return redirect()->route('plans.index');
+            return redirect()->route('plans.index')
+            ->with('message', 'Registro deletado com sucesso!');
         }
 
     }
@@ -97,7 +108,7 @@ class PlanController extends Controller
             return redirect()->back();
         } else {
             return view('admin.pages.plans.edit', [
-                'plan' => $plan
+                'plan' => $plan,
             ]);
         }
     }
@@ -113,7 +124,8 @@ class PlanController extends Controller
         } else {
             $plan->update($request->all());
 
-            return redirect()->route('plans.index');
+            return redirect()->route('plans.index')
+            ->with('message', 'Registro atualizado com sucesso!');
         }
     }
 

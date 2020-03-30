@@ -61,7 +61,8 @@ class DetailPlanController extends Controller
       // Método de cadastro mais simples utilizando o relacionamento DETAILS()
       $plan->details()->create($request->all());
 
-      return redirect()->route('details.plan.index', $plan->url);
+      return redirect()->route('details.plan.index', $plan->url)
+                       ->with('message', 'Registro cadastrado com sucesso!');
     }
 
     //Função para editar um detalhe de um plano
@@ -80,6 +81,7 @@ class DetailPlanController extends Controller
       ]);
     }
 
+    // Função para atualizar um detalhe
     public function update(StoreUpdateDetailPlan $request, $urlPlan, $idDetail)
     {
       $plan = $this->plan->where('url', $urlPlan)->first();
@@ -90,7 +92,39 @@ class DetailPlanController extends Controller
       }
       $detail->update($request->all());
 
-      return redirect()->route('details.plan.index', $plan->url);
+      return redirect()->route('details.plan.index', $plan->url)
+                       ->with('message', 'Registro atualizado com sucesso!');
+    }
+
+    // Função para mostrar os detalhes
+    public function show($urlPlan, $idDetail)
+    {
+      $plan = $this->plan->where('url', $urlPlan)->first();
+      $detail = $this->repository->find($idDetail);
+
+      if (!$plan || !$detail) {
+        return redirect()->back();
+      }
+
+      return view('admin.pages.plans.details.show', [
+        'plan' => $plan,
+        'detail' => $detail,
+      ]);
+    }
+
+    // Função para deletar um detalhe
+    public function destroy($urlPlan, $idDetail)
+    {
+      $plan = $this->plan->where('url', $urlPlan)->first();
+      $detail = $this->repository->find($idDetail);
+
+      if (!$plan || !$detail) {
+        return redirect()->back();
+      }
+      $detail->delete();
+
+      return redirect()->route('details.plan.index', $plan->url)
+                       ->with('message', 'Registro deletado com sucesso!');
     }
 
 

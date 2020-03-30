@@ -24,6 +24,10 @@
                 </li>
             </ul>
 
+            <!-- Inclusão de Alerta de sucesso -->
+            @include('admin.includes.alerts')
+
+
             <!-- Formulário de DELETAR -->
             <form action=" {{ route('plans.destroy', $plan->url) }} " method="POST">
                 @csrf
