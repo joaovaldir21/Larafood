@@ -211,6 +211,7 @@ return [
         [
             'text' => 'planos',  //Texto do menu
             'url'  => 'admin/plans',    //URL do menu
+            'icon' => 'fas fa-list-alt' // classe do icone do menu (fontawesome.com)
             //'can'  => 'manage-blog', //permissão para acessar o menu
         ],
 

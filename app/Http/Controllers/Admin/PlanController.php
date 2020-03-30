@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
 use Illuminate\Http\Request;
-use illuminate\Support\Str;
+
 
 class PlanController extends Controller
 {
@@ -34,11 +35,9 @@ class PlanController extends Controller
     }
 
     // Função para salvar as informações de um novo plano no banco de dados
-    public function store(Request $request)
+    public function store(StoreUpdatePlan $request)
     {
-        $data = $request->all();
-        $data['url'] = Str::kebab($request->name);
-        $this->repository->create($data);
+        $this->repository->create($request->all());
 
         return redirect()->route('plans.index');
     }
@@ -69,10 +68,10 @@ class PlanController extends Controller
             return redirect()->back();
         } else {
             $plan->delete();
-            
+
             return redirect()->route('plans.index');
         }
-        
+
     }
 
     // Função para pesquisa de planos
@@ -87,6 +86,38 @@ class PlanController extends Controller
             'filters' => $filters,
         ]);
     }
+
+    // Função para editar um plano pela URL
+    public function edit($url)
+    {
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan)
+        {
+            return redirect()->back();
+        } else {
+            return view('admin.pages.plans.edit', [
+                'plan' => $plan
+            ]);
+        }
+    }
+
+
+    public function update(StoreUpdatePlan $request, $url)
+    {
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (!$plan)
+        {
+            return redirect()->back();
+        } else {
+            $plan->update($request->all());
+
+            return redirect()->route('plans.index');
+        }
+    }
+
+
 
 
 }
