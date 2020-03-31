@@ -209,11 +209,18 @@ return [
 
     'menu' => [
         [
-            'text' => 'planos',  //Texto do menu
+            'text' => 'Planos',  //Texto do menu
             'url'  => 'admin/plans',    //URL do menu
             'icon' => 'fas fa-list-alt' // classe do icone do menu (fontawesome.com)
             //'can'  => 'manage-blog', //permissão para acessar o menu
         ],
+        [
+            'text' => 'Perfis',  //Texto do menu
+            'url'  => 'admin/profiles',    //URL do menu
+            'icon' => 'fas fa-address-book' // classe do icone do menu (fontawesome.com)
+            //'can'  => 'manage-blog', //permissão para acessar o menu
+        ],
+
 
     ],
 

@@ -10,6 +10,13 @@
 // prefix('admin') = vem após o verbo HTTP
 //namespace('Admin') = vem logo antes do nome do controller
 Route::prefix('admin')->namespace('Admin')->group(function() {
+
+/**
+* Rotas dos Perfis (Profiles) com RESOURSES - (create, update, edit, destroy, show, strore e index)
+*/
+Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search'); //Rota para pesquisa
+Route::resource('profiles', 'ACL\ProfileController');
+
 /**
 * Rotas DETALHES de PLANO
 */
