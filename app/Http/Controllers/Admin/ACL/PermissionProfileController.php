@@ -54,13 +54,13 @@ class PermissionProfileController extends Controller
 
         if (!$request->permissions || count($request->permissions) == 0) {
             return redirect()->back()
-                             ->with('info', 'Necessário vincular pelo menos uma Permissão.');
+                            ->with('info', 'Necessário vincular pelo menos uma Permissão.');
         }
 
         $profile->permissions()->attach($request->permissions);
 
         return redirect()->route('profiles.permissions', $profile->id)
-                         ->with('message', 'Permissão(ões) vinculadas com sucesso!');
+                        ->with('message', 'Permissão(ões) vinculadas com sucesso!');
     }
 
 

@@ -16,7 +16,7 @@ class Profile extends Model
         return $this->belongsToMany(Permission::class);
     }
 
-    // Permissão não encontrada com o Perfil
+    // Consulta as Permissão não encontrada com o Perfil
     public function permissionsAvailable($filter = null)
     {
         $permissions =  Permission::whereNotIn('permissions.id', function($query) {

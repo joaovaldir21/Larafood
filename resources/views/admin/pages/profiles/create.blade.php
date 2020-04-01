@@ -10,13 +10,13 @@
     <div class="card">
         <div class="card-body">
 
-          <!-- Formulário de Cadastro -->
-          <form action="{{ route('profiles.store') }}" class="form" method="POST">
+            <!-- Formulário de Cadastro -->
+            <form action="{{ route('profiles.store') }}" class="form" method="POST">
 
-              <!-- Incluindo o Formulário de cadastro -->
-              @include('admin.pages.profiles._partials.form')
+                <!-- Incluindo o Formulário de cadastro -->
+                @include('admin.pages.profiles._partials.form')
 
-          </form>
+            </form>
 
 
         </div>

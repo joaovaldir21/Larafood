@@ -9,7 +9,7 @@ class Permission extends Model
   protected $fillable = ['name', 'description'];
 
   /**
-  *  Relacionamento entre Profile e Permission (obtem os perfis)
+  *  Relacionamento entre OS Profile e Permission (obtem os perfis)
   **/
   public function profiles()
   {

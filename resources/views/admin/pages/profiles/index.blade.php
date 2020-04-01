@@ -3,14 +3,14 @@
 @section('title', 'Perfis')
 
 @section('content_header')
-  <!-- Breadcrumb -->
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"> <a href="{{ route('admin.index') }}">Dashboard</a> </li>
-    <li class="breadcrumb-item active"> <a href="{{ route('profiles.index') }}">Perfis</a> </li>
-  </ol>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"> <a href="{{ route('admin.index') }}">Dashboard</a> </li>
+        <li class="breadcrumb-item active"> <a href="{{ route('profiles.index') }}">Perfis</a> </li>
+    </ol>
 
-  <!-- link para cadastrar novos planos -->
-  <h1>Perfis <a href="{{ route('profiles.create') }}" class="btn btn-dark">Cadastrar</a></h1>
+    <!-- link para cadastrar novos planos -->
+    <h1>Perfis <a href="{{ route('profiles.create') }}" class="btn btn-dark">Cadastrar</a></h1>
 @stop
 
 @section('content')
@@ -27,8 +27,8 @@
         </div>
         <div class="card-body">
 
-          <!-- Inclusão de Alerta de sucesso -->
-          @include('admin.includes.alerts')
+            <!-- Inclusão de Alerta de sucesso -->
+            @include('admin.includes.alerts')
 
             <table class="table table-condensed">
                 <thead>
@@ -41,13 +41,13 @@
                     @foreach ($profiles as $profile )
                         <tr>
                             <td>
-                              {{ $profile->name}}
+                                {{ $profile->name}}
                             </td>
                             <td style="width=10px;">
-                              <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info">Editar</a>
-                              <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">Ver</a>
-                              <!-- ROTA PARA EXIBIR TODOS AS PERMISSÕES AO CLICAR NO CADEADO DO PERFIL -->
-                              <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"> <i class="fa fa-lock"></i> </a>
+                                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info">Editar</a>
+                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">Ver</a>
+                                <!-- ROTA PARA EXIBIR TODOS AS PERMISSÕES AO CLICAR NO CADEADO DO PERFIL -->
+                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"> <i class="fa fa-lock"></i> </a>
                             </td>
                         </tr>
                     @endforeach

@@ -223,7 +223,7 @@ return [
         [
             'text' => 'Permissões',  //Texto do menu
             'url'  => 'admin/permissions',    //URL do menu
-            'icon' => 'fas fa-lock' // classe do icone do menu (fontawesome.com)
+            'icon' => 'fas fa-lock' // classe do icone  menu (fontawesome.com)
             //'can'  => 'manage-blog', //permissão para acessar o menu
         ],
 

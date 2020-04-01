@@ -48,7 +48,7 @@ class PermissionController extends Controller
       $this->repository->create($request->all());
 
       return redirect()->route('permissions.index')
-                       ->with('message', 'Registro cadastrado com sucesso!');
+                      ->with('message', 'Registro cadastrado com sucesso!');
     }
 
     /**

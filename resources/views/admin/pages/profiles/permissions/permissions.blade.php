@@ -3,15 +3,15 @@
 @section('title', 'Permissões do perfil {$profile->name}')
 
 @section('content_header')
-  <!-- Breadcrumb -->
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"> <a href="{{ route('admin.index') }}">Dashboard</a> </li>
-    <li class="breadcrumb-item active"> <a href="{{ route('profiles.index') }}">Perfis</a> </li>
-  </ol>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"> <a href="{{ route('admin.index') }}">Dashboard</a> </li>
+        <li class="breadcrumb-item active"> <a href="{{ route('profiles.index') }}">Perfis</a> </li>
+    </ol>
 
-  <!-- link para cadastrar novos planos -->
-  <h1>Permissões do perfil (<strong> {{ $profile->name }} </strong>) </h1>
-      <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar Permissão ao Perfil</a>
+    <!-- link para cadastrar novos planos -->
+    <h1>Permissões do perfil (<strong> {{ $profile->name }} </strong>) </h1>
+        <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar Permissão ao Perfil</a>
 @stop
 
 @section('content')
@@ -28,8 +28,8 @@
         </div>
         <div class="card-body">
 
-          <!-- Inclusão de Alerta de sucesso -->
-          @include('admin.includes.alerts')
+            <!-- Inclusão de Alerta de sucesso -->
+            @include('admin.includes.alerts')
 
             <table class="table table-condensed">
                 <thead>
@@ -42,10 +42,10 @@
                     @foreach ($permissions as $permission )
                         <tr>
                             <td>
-                              {{ $permission->name}}
+                                {{ $permission->name}}
                             </td>
                             <td style="width=10px;">
-                              <a href="{{ route('profiles.edit', $permission->id) }}" class="btn btn-info">Editar</a>
+                                <a href="{{ route('profiles.edit', $permission->id) }}" class="btn btn-info">Editar</a>
                             </td>
                         </tr>
                     @endforeach

@@ -12,7 +12,7 @@
 Route::prefix('admin')->namespace('Admin')->group(function() {
 
 /**
-* Rotas de RELACIONAMENTO Permissões X Perfis
+* Rotas de RELACIONAMENTO entre Permissões X Perfis
 */
 Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
 Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
