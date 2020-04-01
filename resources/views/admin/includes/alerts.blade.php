@@ -20,3 +20,10 @@
     {{ session('error') }}
   </div>
 @endif
+
+<!-- ALERT DE atenção -->
+@if (session('info'))
+  <div class="alert alert-warning">
+    {{ session('info') }}
+  </div>
+@endif

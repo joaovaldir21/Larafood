@@ -12,6 +12,20 @@
 Route::prefix('admin')->namespace('Admin')->group(function() {
 
 /**
+* Rotas de RELACIONAMENTO Permissões X Perfis
+*/
+Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+
+
+  /**
+  * Rotas das Permissões (Permissions) com RESOURSES - (create, update, edit, destroy, show, strore e index)
+  */
+  Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search'); //Rota para pesquisa
+  Route::resource('permissions', 'ACL\PermissionController');
+
+/**
 * Rotas dos Perfis (Profiles) com RESOURSES - (create, update, edit, destroy, show, strore e index)
 */
 Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search'); //Rota para pesquisa
