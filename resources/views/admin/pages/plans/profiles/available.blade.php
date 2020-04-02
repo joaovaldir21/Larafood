@@ -1,16 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões disponíveis para o perfil {$profile->name}")
+@section('title', "Perfis disponíveis para o plano {$plan->name}")
 
 @section('content_header')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"> <a href="{{ route('admin.index') }}">Dashboard</a> </li>
-        <li class="breadcrumb-item active"> <a href="{{ route('profiles.index') }}">Perfis</a> </li>
+        <li class="breadcrumb-item"> <a href="{{ route('plans.index') }}">Planos</a> </li>
+        <li class="breadcrumb-item"> <a href="{{ route('plans.profiles', $plan->id) }}">Perfis</a> </li>
+        <li class="breadcrumb-item active"> <a href="{{ route('plans.profiles.available', $plan->id) }}" class="active">Disponíveis</a> </li>
     </ol>
 
     <!-- link para cadastrar novos planos -->
-    <h1>Permissões disponíveis para o perfil (<strong> {{ $profile->name }} </strong>) </h1>
+    <h1>Perfis disponíveis para o plano (<strong> {{ $plan->name }} </strong>) </h1>
 @stop
 
 @section('content')
@@ -18,7 +20,7 @@
         <div class="card-header">
 
             <!-- Formulário de pesquisa -->
-            <form action="{{ route('profiles.permissions.available', $profile->id) }}" method="POST" class="form form-inline">
+            <form action="{{ route('plans.profiles.available', $plan->id) }}" method="POST" class="form form-inline">
                 @csrf
             <input class="form-control" type="text" name="filter" placeholder="Pesquisa" value="{{ $filters['filter'] ?? '' }}">
                 <button type="submit" class="btn btn-dark">Pesquisar</button>
@@ -39,16 +41,16 @@
                 </thead>
                 <tbody>
 
-                    <form action="{{ route('profiles.permissions.attach', $profile->id) }}" method="POST">
+                    <form action="{{ route('plans.profiles.attach', $plan->id) }}" method="POST">
                         @csrf
 
-                        @foreach ($permissions as $permission )
+                        @foreach ($profiles as $profile )
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="permissions[]" value="{{ $permission->id }}">
+                                    <input type="checkbox" name="profiles[]" value="{{ $profile->id }}">
                                 </td>
                                 <td>
-                                    {{ $permission->name}}
+                                    {{ $profile->name}}
                                 </td>
                             </tr>
                         @endforeach
@@ -67,9 +69,9 @@
         <div class="card-footer">
 
             @if (isset($filters))
-                {!!  $permissions->appends($filters)->links() !!}
+                {!!  $profiles->appends($filters)->links() !!}
             @else
-                {!!  $permissions->links() !!}
+                {!!  $profiles->links() !!}
             @endif
 
         </div>

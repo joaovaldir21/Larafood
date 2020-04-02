@@ -34,7 +34,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th width="250">Ações</th>
+                        <th width="270">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +48,7 @@
                                 <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">Ver</a>
                                 <!-- ROTA PARA EXIBIR TODOS AS PERMISSÕES AO CLICAR NO CADEADO DO PERFIL -->
                                 <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"> <i class="fa fa-lock"></i> </a>
+                                <a href="{{ route('profiles.plans', $profile->id) }}" class="btn btn-info"> <i class="fas fa-list-alt"></i> </a>
                             </td>
                         </tr>
                     @endforeach

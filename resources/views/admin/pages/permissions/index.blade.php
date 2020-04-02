@@ -46,6 +46,8 @@
                             <td style="width=10px;">
                               <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-info">Editar</a>
                               <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-warning">Ver</a>
+                              <!-- ROTA PARA EXIBIR TODOS OS PERFIS AO CLICAR NO CADEADO DO PERFIL -->
+                              <a href="{{ route('permissions.profiles', $permission->id) }}" class="btn btn-info"> <i class="fa fa-lock"></i> </a>
                             </td>
                         </tr>
                     @endforeach

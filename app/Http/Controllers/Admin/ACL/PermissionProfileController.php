@@ -32,6 +32,19 @@ class PermissionProfileController extends Controller
         return view('admin.pages.profiles.permissions.permissions', compact('profile', 'permissions'));
     }
 
+    // Função para exibir os profiles pelo ID da permissão
+    public function profiles($idPermission)
+    {
+        if (!$permission = $this->permission->find($idPermission)) {
+            return redirect()->back();
+        }
+
+        $profiles = $permission->profiles()->paginate();
+
+        return view('admin.pages.permissions.profiles.profiles', compact('permission', 'profiles'));
+    }
+
+
     // Função para listar todos as permissões disponiveis para o perfil
     public function permissionsAvailable(Request $request, $idProfile)
     {
@@ -60,8 +73,25 @@ class PermissionProfileController extends Controller
         $profile->permissions()->attach($request->permissions);
 
         return redirect()->route('profiles.permissions', $profile->id)
-                        ->with('message', 'Permissão(ões) vinculadas com sucesso!');
+                        ->with('message', 'Vinculação realizada com sucesso!');
     }
+
+    //Função para desvincular uma permissão de um perfil
+    public function detachPermissionProfile($idProfile, $idPermission)
+    {
+      $profile = $this->profile->find($idProfile);
+      $permission = $this->permission->find($idPermission);
+
+      if (!$profile || !$permission) {
+          return redirect()->back();
+      }
+
+      $profile->permissions()->detach($permission);
+
+      return redirect()->route('profiles.permissions', $profile->id)
+                      ->with('message', 'Desvinculação realizada com sucesso!');
+    }
+
 
 
 }

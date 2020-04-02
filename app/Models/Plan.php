@@ -14,6 +14,14 @@ class Plan extends Model
       return $this->hasMany(DetailPlan::class);
     }
 
+    /**
+    *  Relacionamento entre plan e profile (obtem os perfis)
+    **/
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
     // Função para pesquisa por NOME e por DESCRIÇÃO
     public function search($filter = null)
     {
@@ -23,4 +31,22 @@ class Plan extends Model
                     ->paginate(); // paginate sem valor exibe por padrão 15 por paginas
         return $results;
     }
+
+    // Consulta os perfis não encontrada com o plano
+    public function profilesAvailable($filter = null)
+    {
+        $profiles =  Profile::whereNotIn('profiles.id', function($query) {
+          $query->select('plan_profile.profile_id');
+          $query->from('plan_profile');
+          $query->whereRaw("plan_profile.plan_id={$this->id}");
+        })->where(function ($queryFilter) use ($filter){
+          if ($filter)
+            $queryFilter->where('profiles.name', 'LIKE', "%{$filter}%");
+        })
+        ->paginate();
+
+        return $profiles;
+    }
+
+
 }
