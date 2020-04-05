@@ -48,7 +48,7 @@ class ProfileController extends Controller
       $this->repository->create($request->all());
 
       return redirect()->route('profiles.index')
-                       ->with('message', 'Registro cadastrado com sucesso!');
+                      ->with('message', 'Registro cadastrado com sucesso!');
     }
 
     /**
@@ -95,7 +95,7 @@ class ProfileController extends Controller
       $profile->update($request->all());
 
       return redirect()->route('profiles.index')
-                       ->with('message', 'Registro atualizado com sucesso!');
+                      ->with('message', 'Registro atualizado com sucesso!');
     }
 
     /**
@@ -112,7 +112,7 @@ class ProfileController extends Controller
       $profile->delete();
 
       return redirect()->route('profiles.index')
-                       ->with('message', 'Registro deletado com sucesso!');
+                      ->with('message', 'Registro deletado com sucesso!');
     }
 
     /**
@@ -125,13 +125,13 @@ class ProfileController extends Controller
     {
       $filters = $request->only('filter');
       $profiles = $this->repository
-                       ->where(function($query) use ($request) {
-                         if ($request->filter) {
-                           $query->where('name', 'LIKE', "%{$request->filter}%");
-                           $query->orWhere('description', 'LIKE', "%{$request->filter}%");
-                         }
-                       })
-                       ->paginate();
+                      ->where(function($query) use ($request) {
+                        if ($request->filter) {
+                          $query->where('name', 'LIKE', "%{$request->filter}%");
+                          $query->orWhere('description', 'LIKE', "%{$request->filter}%");
+                        }
+                      })
+                      ->paginate();
       return view('admin.pages.profiles.index', compact('profiles', 'filters'));
     }
 

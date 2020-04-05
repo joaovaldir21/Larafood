@@ -220,7 +220,12 @@ return [
             'icon' => 'fas fa-address-book' // classe do icone do menu (fontawesome.com)
             //'can'  => 'manage-blog', //permissão para acessar o menu
         ],
-
+        [
+            'text' => 'Permissões',  //Texto do menu
+            'url'  => 'admin/permissions',    //URL do menu
+            'icon' => 'fas fa-lock' // classe do icone  menu (fontawesome.com)
+            //'can'  => 'manage-blog', //permissão para acessar o menu
+        ],
 
     ],
 

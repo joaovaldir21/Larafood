@@ -62,7 +62,7 @@ class DetailPlanController extends Controller
       $plan->details()->create($request->all());
 
       return redirect()->route('details.plan.index', $plan->url)
-                       ->with('message', 'Registro cadastrado com sucesso!');
+                      ->with('message', 'Registro cadastrado com sucesso!');
     }
 
     //Função para editar um detalhe de um plano
@@ -93,7 +93,7 @@ class DetailPlanController extends Controller
       $detail->update($request->all());
 
       return redirect()->route('details.plan.index', $plan->url)
-                       ->with('message', 'Registro atualizado com sucesso!');
+                      ->with('message', 'Registro atualizado com sucesso!');
     }
 
     // Função para mostrar os detalhes
@@ -124,7 +124,7 @@ class DetailPlanController extends Controller
       $detail->delete();
 
       return redirect()->route('details.plan.index', $plan->url)
-                       ->with('message', 'Registro deletado com sucesso!');
+                      ->with('message', 'Registro deletado com sucesso!');
     }
 
 

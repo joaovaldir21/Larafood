@@ -19,7 +19,10 @@ class CreateDetailPlansTable extends Migration
             $table->string('name');
             $table->timestamps();
             // Ligação da tabela DETAILS_PLAN com PLANS
-            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreign('plan_id')
+                                    ->references('id')
+                                    ->on('plans')
+                                    ->onDelete('cascade');
         });
     }
 
@@ -30,6 +33,6 @@ class CreateDetailPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_plans');
+        Schema::dropIfExists('detail_plan');
     }
 }

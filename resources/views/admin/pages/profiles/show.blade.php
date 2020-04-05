@@ -22,7 +22,7 @@
             @include('admin.includes.alerts')
 
 
-            <!-- Formulário de DELETAR -->
+            <!-- Exibe o Formulário de DELETAR -->
             <form action=" {{ route('profiles.destroy', $profile->id) }} " method="POST">
                 @csrf
                 @method('DELETE')

@@ -2,7 +2,7 @@
 <!-- Inclusão da view de ALERTA  -->
 @include('admin.includes.alerts')
 
-<!-- exibe o formulário  -->
+<!-- exibe formulário  -->
 <div class="form-group">
     <label>* Nome: </label>
     <input type="text" name="name" class="form-control" placeholder="Informe o Nome" value="{{ $profile->name ?? old('name') }}">
